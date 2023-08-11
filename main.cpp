@@ -1,5 +1,6 @@
 #include "LinkedList/DoublyLinkedList.cpp"
 #include "LinkedList/SinglyLinkedList.cpp"
+#include "Stack/StackArray.cpp"
 #include <iostream>
 using namespace std;
 
@@ -25,6 +26,8 @@ int main() {
 
   cout << "List Head " << list->head->data << "\n";
   cout << "List Tail " << list->tail->data << "\n";
+  cout << "-------------------------------------- "
+       << "\n";
 
   DoublyLinkedList *list2 = new DoublyLinkedList();
   list2->insertLast(300);
@@ -46,4 +49,24 @@ int main() {
 
   cout << "Doubly List Head " << list2->head->data << "\n";
   cout << "Doubly List Tail " << list2->tail->data << "\n";
+  cout << "-------------------------------------- "
+       << "\n";
+  Stack<int> stack;
+  cout << "Stack Size: " << stack.size() << "\n";
+  stack.push(5);
+  stack.push(6);
+  stack.push(7);
+  stack.push(8);
+  stack.push(9);
+  stack.push(10);
+  stack.push(11);
+  stack.push(12);
+  stack.print();
+  cout << "Stack peek: " << stack.peek() << "\n";
+  cout << "Stack Size: " << stack.size() << "\n";
+  while(!stack.isEmpty()){
+    cout << "pop: " << stack.pop() << "\n";
+    cout << "Stack peek: " << stack.peek() << "\n";
+    cout << "Stack Size: " << stack.size() << "\n";
+  }
 }
