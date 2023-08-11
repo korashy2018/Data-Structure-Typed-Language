@@ -4,3 +4,4 @@ replit.nix
 .replit
 Makefile
 .ccls-cache
+main
