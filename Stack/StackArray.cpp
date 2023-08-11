@@ -7,7 +7,7 @@ private:
   int initialSize;
   int currentSize;
   void resizeStack() {
-    if (this->topIndex > this->currentSize - 1)
+    if (this->topIndex < this->currentSize - 1)
       return;
     T *newArray = new T[this->currentSize + this->initialSize];
   std:
