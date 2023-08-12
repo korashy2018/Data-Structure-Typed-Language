@@ -3,44 +3,42 @@ using namespace std;
 namespace DS {
 namespace LinkedList {
 namespace Doubly {
-template <typename T> class DoublyLinkedListNode {
+template <typename T> class LinkedListNode {
 public:
   T data;
-  DoublyLinkedListNode *next;
-  DoublyLinkedListNode *back;
-  DoublyLinkedListNode(T _data) {
+  LinkedListNode *next;
+  LinkedListNode *back;
+  LinkedListNode(T _data) {
     this->data = _data;
     this->next = NULL;
     this->back = NULL;
   }
 };
-template <typename T> class DoublyLinkedListIterator {
+template <typename T> class LinkedListIterator {
 private:
-  DoublyLinkedListNode<T> *currentNode;
+  LinkedListNode<T> *currentNode;
 
 public:
-  DoublyLinkedListIterator() { currentNode = NULL; }
-  DoublyLinkedListIterator(DoublyLinkedListNode<T> *node) {
-    currentNode = node;
-  }
+  LinkedListIterator() { currentNode = NULL; }
+  LinkedListIterator(LinkedListNode<T> *node) { currentNode = node; }
   int data() { return this->currentNode->data; }
-  DoublyLinkedListIterator next() {
+  LinkedListIterator next() {
     this->currentNode = this->currentNode->next;
     return *this;
   }
-  DoublyLinkedListNode<T> *current() { return this->currentNode; }
+  LinkedListNode<T> *current() { return this->currentNode; }
 };
 
-template <typename T> class DoublyLinkedList {
+template <typename T> class LinkedList {
 public:
-  DoublyLinkedListNode<T> *head = NULL;
-  DoublyLinkedListNode<T> *tail = NULL;
-  DoublyLinkedListIterator<T> begin() {
-    DoublyLinkedListIterator<T> itr(this->head);
+  LinkedListNode<T> *head = NULL;
+  LinkedListNode<T> *tail = NULL;
+  LinkedListIterator<T> begin() {
+    LinkedListIterator<T> itr(this->head);
     return itr;
   }
   void printList() {
-    for (DoublyLinkedListIterator<T> itr = this->begin(); itr.current() != NULL;
+    for (LinkedListIterator<T> itr = this->begin(); itr.current() != NULL;
          itr.next()) {
       cout << itr.data();
       if (itr.current()->next != NULL)
@@ -48,8 +46,8 @@ public:
     }
     cout << "\n";
   }
-  DoublyLinkedListNode<T> *find(T _data) {
-    for (DoublyLinkedListIterator<T> itr = this->begin(); itr.current() != NULL;
+  LinkedListNode<T> *find(T _data) {
+    for (LinkedListIterator<T> itr = this->begin(); itr.current() != NULL;
          itr.next()) {
       if (itr.data() == _data) {
         return itr.current();
@@ -59,7 +57,7 @@ public:
   }
 
   void insertLast(int _data) {
-    DoublyLinkedListNode<T> *newNode = new DoublyLinkedListNode<T>(_data);
+    LinkedListNode<T> *newNode = new LinkedListNode<T>(_data);
     if (this->tail == NULL) {
       this->head = this->tail = newNode;
     } else {
@@ -69,11 +67,11 @@ public:
       this->tail = newNode;
     }
   }
-  void insertAfter(DoublyLinkedListNode<T> *node, int _data) {
+  void insertAfter(LinkedListNode<T> *node, int _data) {
     if (node == NULL)
       return;
     // create new node
-    DoublyLinkedListNode<T> *newNode = new DoublyLinkedListNode<T>(_data);
+    LinkedListNode<T> *newNode = new LinkedListNode<T>(_data);
     if (this->tail == node) {
       this->tail = newNode;
       newNode->back = node;
@@ -88,12 +86,12 @@ public:
     // make the back of the next node to be the newNOde
     newNode->next->back = newNode;
   }
-  void insertBefore(DoublyLinkedListNode<T> *node, T _data) {
+  void insertBefore(LinkedListNode<T> *node, T _data) {
     // check if node is null and return if it
     if (node == NULL)
       return;
 
-    DoublyLinkedListNode<T> *newNode = new DoublyLinkedListNode<T>(_data);
+    LinkedListNode<T> *newNode = new LinkedListNode<T>(_data);
     newNode->next = node;
 
     // check if node is head
@@ -107,7 +105,7 @@ public:
     }
     node->back = newNode;
   }
-  void deleteNode(DoublyLinkedListNode<T> *node) {
+  void deleteNode(LinkedListNode<T> *node) {
     if (node == NULL) {
       return;
     } else if (this->head == node) {

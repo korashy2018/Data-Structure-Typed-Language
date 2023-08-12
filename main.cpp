@@ -33,8 +33,8 @@ int main() {
   cout << "-------------------------------------- "
        << "\n";
 
-  DS::LinkedList::Doubly::DoublyLinkedList<int> *list2 =
-      new DS::LinkedList::Doubly::DoublyLinkedList<int>();
+  DS::LinkedList::Doubly::LinkedList<int> *list2 =
+      new DS::LinkedList::Doubly::LinkedList<int>();
   list2->insertLast(300);
   list2->insertLast(96);
   list2->insertLast(23);
@@ -42,8 +42,7 @@ int main() {
 
   list2->printList();
 
-  DS::LinkedList::Doubly::DoublyLinkedListNode<int> *nodeAfter2 =
-      list2->find(96);
+  DS::LinkedList::Doubly::LinkedListNode<int> *nodeAfter2 = list2->find(96);
   list2->insertAfter(nodeAfter2, 200);
   list2->printList();
 
