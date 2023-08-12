@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+namespace DS {
 template <typename T> class Stack {
 private:
   T *dataList;
@@ -58,3 +59,4 @@ public:
     cout << "\n";
   }
 };
+} // namespace DS

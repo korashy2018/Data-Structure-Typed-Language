@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
-
+namespace DS {
+namespace LinkedList {
+namespace Doubly {
 template <typename T> class DoublyLinkedListNode {
 public:
   T data;
@@ -122,3 +124,7 @@ public:
     delete node;
   }
 };
+} // namespace Doubly
+} // namespace LinkedList
+
+} // namespace DS

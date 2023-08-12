@@ -1,12 +1,13 @@
-#include "../LinkedList/SinglyLinkedList.cpp"
+#include "../LinkedList/SinglyLinkedList.cpp";
 #include <iostream>
 using namespace std;
+namespace DS {
 template <typename T> class Queue {
 private:
-  LinkedList<T> *dataList;
+  DS::LinkedList::Singly::LinkedList<T> *dataList;
 
 public:
-  Queue() { this->dataList = new LinkedList<T>(); }
+  Queue() { this->dataList = new DS::LinkedList::Singly::LinkedList<T>(); }
   void enqueue(T _data) { this->dataList->insertLast(_data); }
   T dequeue() {
     T headData = this->dataList->head->data;
@@ -23,3 +24,4 @@ public:
   bool isEmpty() { return this->dataList->size() == 0; }
   void print() { return this->dataList->printList(); }
 };
+} // namespace DS

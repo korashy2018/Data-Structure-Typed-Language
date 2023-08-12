@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
-
+namespace DS {
+namespace LinkedList {
+namespace Singly {
 template <typename T> class LinkedListNode {
 public:
   T data;
@@ -115,3 +117,6 @@ public:
   void deleteHead() { this->deleteNode(this->head); }
   int size() { return this->Length; }
 };
+} // namespace Singly
+} // namespace LinkedList
+} // namespace DS
