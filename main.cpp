@@ -1,6 +1,4 @@
-#include "DS/LinkedList/DoublyLinkedList.cpp"
-#include "DS/Queue/Queue.cpp"
-#include "DS/Stack/StackArray.cpp"
+#include "DS/DS.h"
 #include <iostream>
 using namespace std;
 using namespace DS;
@@ -35,7 +33,8 @@ int main() {
   cout << "-------------------------------------- "
        << "\n";
 
-  DS::LinkedList::Doubly::DoublyLinkedList<int> *list2 = new DS::LinkedList::Doubly::DoublyLinkedList<int>();
+  DS::LinkedList::Doubly::DoublyLinkedList<int> *list2 =
+      new DS::LinkedList::Doubly::DoublyLinkedList<int>();
   list2->insertLast(300);
   list2->insertLast(96);
   list2->insertLast(23);
@@ -43,7 +42,8 @@ int main() {
 
   list2->printList();
 
-  DS::LinkedList::Doubly::DoublyLinkedListNode<int> *nodeAfter2 = list2->find(96);
+  DS::LinkedList::Doubly::DoublyLinkedListNode<int> *nodeAfter2 =
+      list2->find(96);
   list2->insertAfter(nodeAfter2, 200);
   list2->printList();
 
