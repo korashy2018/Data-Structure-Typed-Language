@@ -1,40 +1,41 @@
 #include <iostream>
 using namespace std;
 
-class LinkedListNode {
+template <typename T> class LinkedListNode {
 public:
-  int data;
+  T data;
   LinkedListNode *next;
-  LinkedListNode(int _data) {
+  LinkedListNode(T _data) {
     this->data = _data;
     this->next = NULL;
   }
 };
-class LinkedListIterator {
+template <typename T> class LinkedListIterator {
 private:
-  LinkedListNode *currentNode;
+  LinkedListNode<T> *currentNode;
 
 public:
   LinkedListIterator() { currentNode = NULL; }
-  LinkedListIterator(LinkedListNode *node) { currentNode = node; }
+  LinkedListIterator(LinkedListNode<T> *node) { currentNode = node; }
   int data() { return this->currentNode->data; }
   LinkedListIterator next() {
     this->currentNode = this->currentNode->next;
     return *this;
   }
-  LinkedListNode *current() { return this->currentNode; }
+  LinkedListNode<T> *current() { return this->currentNode; }
 };
 
-class LinkedList {
+template <typename T> class LinkedList {
 public:
-  LinkedListNode *head = NULL;
-  LinkedListNode *tail = NULL;
-  LinkedListIterator begin() {
-    LinkedListIterator itr(this->head);
+  LinkedListNode<T> *head = NULL;
+  LinkedListNode<T> *tail = NULL;
+  int Length = 0;
+  LinkedListIterator<T> begin() {
+    LinkedListIterator<T> itr(this->head);
     return itr;
   }
   void printList() {
-    for (LinkedListIterator itr = this->begin(); itr.current() != NULL;
+    for (LinkedListIterator<T> itr = this->begin(); itr.current() != NULL;
          itr.next()) {
       cout << itr.data();
       if (itr.current()->next != NULL)
@@ -42,8 +43,8 @@ public:
     }
     cout << "\n";
   }
-  LinkedListNode *find(int _data) {
-    for (LinkedListIterator itr = this->begin(); itr.current() != NULL;
+  LinkedListNode<T> *find(T _data) {
+    for (LinkedListIterator<T> itr = this->begin(); itr.current() != NULL;
          itr.next()) {
       if (itr.data() == _data) {
         return itr.current();
@@ -51,8 +52,8 @@ public:
     }
     return NULL;
   }
-  LinkedListNode *findParent(LinkedListNode *node) {
-    for (LinkedListIterator itr = this->begin(); itr.current() != NULL;
+  LinkedListNode<T> *findParent(LinkedListNode<T> *node) {
+    for (LinkedListIterator<T> itr = this->begin(); itr.current() != NULL;
          itr.next()) {
       if (itr.current()->next == node) {
         return itr.current();
@@ -62,7 +63,7 @@ public:
   }
 
   void insertLast(int _data) {
-    LinkedListNode *newNode = new LinkedListNode(_data);
+    LinkedListNode<T> *newNode = new LinkedListNode<T>(_data);
     if (this->head == NULL) {
       this->head = newNode;
       this->tail = newNode;
@@ -70,27 +71,30 @@ public:
       this->tail->next = newNode;
       this->tail = newNode;
     }
+    this->Length++;
   }
-  void insertAfter(LinkedListNode *node, int _data) {
-    LinkedListNode *newNode = new LinkedListNode(_data);
+  void insertAfter(LinkedListNode<T> *node, int _data) {
+    LinkedListNode<T> *newNode = new LinkedListNode<T>(_data);
     newNode->next = node->next;
     node->next = newNode;
     if (node->next == NULL) {
       this->tail = newNode;
     }
+    this->Length++;
   }
-  void insertBefore(LinkedListNode *node, int _data) {
-    LinkedListNode *newNode = new LinkedListNode(_data);
+  void insertBefore(LinkedListNode<T> *node, int _data) {
+    LinkedListNode<T> *newNode = new LinkedListNode<T>(_data);
     newNode->next = node;
-    LinkedListNode *parent = this->findParent(node);
+    LinkedListNode<T> *parent = this->findParent(node);
 
     if (parent == NULL) {
       this->head = newNode;
     } else {
       parent->next = newNode;
     }
+    this->Length++;
   }
-  void deleteNode(LinkedListNode *node) {
+  void deleteNode(LinkedListNode<T> *node) {
     if (node == NULL) {
       return;
     } else if (this->head == this->tail) {
@@ -98,7 +102,7 @@ public:
     } else if (this->head == node) {
       this->head = node->next;
     } else {
-      LinkedListNode *parent = this->findParent(node);
+      LinkedListNode<T> *parent = this->findParent(node);
       if (node == this->tail) {
         this->tail = parent;
       } else {
@@ -106,32 +110,8 @@ public:
       }
     }
     delete node;
+    this->Length--;
   }
+  void deleteHead() { this->deleteNode(this->head); }
+  int size() { return this->Length; }
 };
-// int main() {
-
-//   LinkedList *list = new LinkedList();
-//   list->insertLast(5);
-//   list->insertLast(6);
-//   list->insertLast(7);
-//   list->printList();
-
-//   LinkedListNode *nodeAfter = list->find(6);
-//   list->insertAfter(nodeAfter, 6);
-//   list->printList();
-
-//   list->insertAfter(list->find(6), 98);
-//   list->printList();
-
-//   list->insertBefore(list->find(5), 1000);
-//   list->printList();
-
-//   list->deleteNode(list->find(1000));
-//   list->deleteNode(list->find(5));
-//   // list->deleteNode(list->find(7));
-//   list->printList();
-
-//   cout << list->head->data << "\n";
-//     cout << list->tail->data << "\n";
-
-// }

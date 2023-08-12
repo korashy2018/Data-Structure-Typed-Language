@@ -33,12 +33,12 @@ public:
   }
   T peek() {
     if (this->topIndex == -1)
-      return 0;
+      return NULL;
     return this->dataList[this->topIndex];
   }
   T pop() {
     if (this->topIndex == -1)
-      return 0;
+      return NULL;
     T headOfStack = this->dataList[this->topIndex];
     this->dataList[this->topIndex] = 0;
     this->topIndex--;
