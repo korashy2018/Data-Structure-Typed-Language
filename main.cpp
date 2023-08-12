@@ -1,12 +1,14 @@
 #include "LinkedList/DoublyLinkedList.cpp"
-#include "LinkedList/SinglyLinkedList.cpp"
+// #include "LinkedList/SinglyLinkedList.cpp"
+#include "Queue/Queue.cpp"
 #include "Stack/StackArray.cpp"
+
 #include <iostream>
 using namespace std;
 
 int main() {
 
-  LinkedList *list = new LinkedList();
+  LinkedList<int> *list = new LinkedList<int>();
   list->insertLast(10);
   list->insertLast(20);
   list->insertLast(50);
@@ -14,7 +16,7 @@ int main() {
 
   list->printList();
 
-  LinkedListNode *nodeAfter = list->find(20);
+  LinkedListNode<int> *nodeAfter = list->find(20);
   list->insertAfter(nodeAfter, 6);
   list->printList();
 
@@ -25,11 +27,16 @@ int main() {
   list->printList();
 
   cout << "List Head " << list->head->data << "\n";
+  list->deleteHead();
+  cout << "List Head after Deletion " << list->head->data << "\n";
+
   cout << "List Tail " << list->tail->data << "\n";
+  cout << "List size " << list->size() << "\n";
+
   cout << "-------------------------------------- "
        << "\n";
 
-  DoublyLinkedList *list2 = new DoublyLinkedList();
+  DoublyLinkedList<int> *list2 = new DoublyLinkedList<int>();
   list2->insertLast(300);
   list2->insertLast(96);
   list2->insertLast(23);
@@ -37,8 +44,8 @@ int main() {
 
   list2->printList();
 
-  DoublyLinkedListNode *nodeAfter2 = list2->find(20);
-  list2->insertAfter(nodeAfter2, 96);
+  DoublyLinkedListNode<int> *nodeAfter2 = list2->find(96);
+  list2->insertAfter(nodeAfter2, 200);
   list2->printList();
 
   list2->insertAfter(list2->find(23), 50);
@@ -64,9 +71,22 @@ int main() {
   stack.print();
   cout << "Stack peek: " << stack.peek() << "\n";
   cout << "Stack Size: " << stack.size() << "\n";
-  while(!stack.isEmpty()){
+  while (!stack.isEmpty()) {
     cout << "pop: " << stack.pop() << "\n";
     cout << "Stack peek: " << stack.peek() << "\n";
     cout << "Stack Size: " << stack.size() << "\n";
   }
+  cout << "-------------------------------------- "
+       << "\n";
+  Queue<int> queue;
+  queue.enqueue(5);
+  queue.enqueue(6);
+  queue.enqueue(7);
+  queue.print();
+
+  while (!queue.isEmpty()) {
+    cout << "Queue peek: " << queue.peek() << "\n";
+    cout << "Dequeu: " << queue.dequeue() << "\n";
+    cout << "Queue Size: " << queue.size() << "\n";
+  };
 }
