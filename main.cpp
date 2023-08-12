@@ -4,6 +4,10 @@ using namespace std;
 using namespace DS;
 
 int main() {
+
+  cout << "\n"
+       << "-----------------Singly--------------------- "
+       << "\n";
   DS::LinkedList::Singly::LinkedList<int> *list =
       new DS::LinkedList::Singly::LinkedList<int>();
   list->insertLast(10);
@@ -30,9 +34,9 @@ int main() {
   cout << "List Tail " << list->tail->data << "\n";
   cout << "List size " << list->size() << "\n";
 
-  cout << "-------------------------------------- "
+  cout << "\n"
+       << "-----------------Doubly--------------------- "
        << "\n";
-
   DS::LinkedList::Doubly::LinkedList<int> *list2 =
       new DS::LinkedList::Doubly::LinkedList<int>();
   list2->insertLast(300);
@@ -54,7 +58,8 @@ int main() {
 
   cout << "Doubly List Head " << list2->head->data << "\n";
   cout << "Doubly List Tail " << list2->tail->data << "\n";
-  cout << "-------------------------------------- "
+  cout << "\n"
+       << "-----------------Stack--------------------- "
        << "\n";
   Stack<int> stack;
   cout << "Stack Size: " << stack.size() << "\n";
@@ -74,12 +79,14 @@ int main() {
     cout << "Stack peek: " << stack.peek() << "\n";
     cout << "Stack Size: " << stack.size() << "\n";
   }
-  cout << "-------------------------------------- "
+  cout << "\n"
+       << "-----------------Queue--------------------- "
        << "\n";
   Queue<int> queue;
   queue.enqueue(5);
   queue.enqueue(6);
   queue.enqueue(7);
+  queue.enqueue(10);
   queue.print();
 
   while (!queue.isEmpty()) {
@@ -87,4 +94,5 @@ int main() {
     cout << "Dequeu: " << queue.dequeue() << "\n";
     cout << "Queue Size: " << queue.size() << "\n";
   };
+  queue.print();
 }
